@@ -8,21 +8,25 @@ module.exports = function (app) {
         console.log("friendsData[0].scores[0]: " + friendsData[0].scores[0]);
     });
     app.post("/api/friends", function (req, res) {
+        console.log(req.body);
         var bestMatch = {
             name: "",
             photo: "",
-            friendDifference: 1000
+            friendDifference: Infinity
         };
 
         var userData = req.body;
         var userScores = userData.scores;
         var totalDifference = 0;
-
+        console.log(friends);
         for (var i = 0; i < friends.length; i++) {
-            console.log(friends[1].name);
+            console.log(friends[i].name);
+            console.log("--------------------");
+            console.log(friends[i].scores);
             totalDifference = 0;
-            for (var j = 0; j < friends[i].scores[j]; j++) {
-                totalDifference += Math.abs(parseInt(userScores[j]) - parseInt(friends[i] - scores[j]));
+            for (var j = 0; j < friends[i].scores.length; j++) {
+                console.log(friends[i].scores);
+                totalDifference += Math.abs(parseInt(userScores[j]) - parseInt(friends[i].scores[j]));
                 if (totalDifference <= bestMatch.friendDifference) {
                     bestMatch.name = friends[i].name;
                     bestMatch.photo = friends[i].photo;
